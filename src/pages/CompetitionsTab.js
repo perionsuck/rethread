@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PostCard from '../components/PostCard';
+import { Calendar, FileText } from 'lucide-react';
 
-export default function CompetitionsTab({ competitions, posts, onViewProfile }) {
+export default function CompetitionsTab({ competitions, posts, users, onViewProfile }) {
   const [selectedComp, setSelectedComp] = useState(null);
 
   // View a single competition's entries
@@ -20,26 +21,25 @@ export default function CompetitionsTab({ competitions, posts, onViewProfile }) 
         <div style={{ background: 'linear-gradient(135deg, rgba(107,142,90,0.1), rgba(196,149,106,0.1))', borderRadius: 18, padding: 24, marginBottom: 20, border: '1px solid var(--color-border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
             <span style={{ fontSize: 28 }}>{selectedComp.theme.split(' ')[0]}</span>
-            <span style={{ fontSize: 12, background: selectedComp.status === 'active' ? 'var(--color-green)' : 'var(--color-text-muted)', color: '#fff', padding: '4px 12px', borderRadius: 20, fontFamily: 'var(--font-body)', fontWeight: 600 }}>
+            <span style={{ fontSize: 12, background: selectedComp.status === 'active' ? 'var(--color-green)' : 'var(--color-text-muted)', color: '#6B8E5A', padding: '4px 12px', borderRadius: 20, fontFamily: 'var(--font-body)', fontWeight: 600 }}>
               {selectedComp.status === 'active' ? 'ACTIVE' : 'ENDED'}
             </span>
           </div>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--color-text-dark)', margin: '0 0 6px' }}>{selectedComp.title}</h2>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--color-text-mid)', lineHeight: 1.5, margin: '0 0 12px' }}>{selectedComp.description}</p>
           <div style={{ display: 'flex', gap: 16, fontSize: 13, fontFamily: 'var(--font-body)', color: 'var(--color-text-brown)' }}>
-            <span>📅 {selectedComp.status === 'active' ? `Deadline: ${selectedComp.deadline}` : 'Competition ended'}</span>
-            <span>📝 {selectedComp.entries} entries</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Calendar size={13} /> {selectedComp.status === 'active' ? `Deadline: ${selectedComp.deadline}` : 'Competition ended'}</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><FileText size={13} /> {selectedComp.entries} entries</span>
           </div>
         </div>
 
         {/* Competition entries */}
         {compPosts.length > 0 ? (
           compPosts.map((post) => (
-            <PostCard key={post.id} post={post} onUpvote={() => {}} onViewProfile={onViewProfile} />
+            <PostCard key={post.id} post={post} users={users} onUpvote={() => {}} onViewProfile={onViewProfile} />
           ))
         ) : (
           <div style={{ textAlign: 'center', padding: 40, color: 'var(--color-text-muted)', fontFamily: 'var(--font-body)' }}>
-            <p style={{ fontSize: 40, marginBottom: 8 }}>🧵</p>
             <p>No entries yet. Be the first!</p>
           </div>
         )}

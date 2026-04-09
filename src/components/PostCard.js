@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import Avatar from './Avatar';
 import UpvoteButton from './UpvoteButton';
+import { MessageCircle, Trophy} from 'lucide-react';
 
-function PostCard({ post, onUpvote, onViewProfile }) {
+// Helper to find a user's avatar from the users list
+function getUserAvatar(users, userId) {
+  const user = users?.find(u => u.id === userId);
+  return user?.avatar || null;
+}
+
+function PostCard({ post, users, onUpvote, onViewProfile }) {
   const [expanded, setExpanded] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [newComment, setNewComment] = useState('');
@@ -26,7 +33,7 @@ function PostCard({ post, onUpvote, onViewProfile }) {
       {/* Header */}
       <div style={{ padding: '14px 18px 0', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div onClick={() => onViewProfile?.(post.userId)} style={{ cursor: 'pointer' }}>
-          <Avatar username={post.username} size={34} />
+          <Avatar username={post.username} avatar={getUserAvatar(users, post.userId)} size={34} />
         </div>
         <div style={{ flex: 1 }}>
           <span
@@ -41,7 +48,7 @@ function PostCard({ post, onUpvote, onViewProfile }) {
               fontSize: 10, background: 'linear-gradient(135deg, #C4956A, #D4A574)',
               color: '#fff', padding: '2px 8px', borderRadius: 20, marginLeft: 8, fontWeight: 600,
             }}>
-              🏆 Competition
+              Competition <Trophy size={7} />
             </span>
           )}
         </div>
@@ -49,7 +56,7 @@ function PostCard({ post, onUpvote, onViewProfile }) {
 
       {/* Title */}
       <h3 style={{
-        padding: '10px 18px 0', fontFamily: "'Playfair Display', serif",
+        padding: '10px 18px 0', fontFamily: "'DM Sans', sans-serif",
         fontSize: 17, color: '#3D2E1F', margin: 0, lineHeight: 1.3,
       }}>
         {post.title}
@@ -62,7 +69,10 @@ function PostCard({ post, onUpvote, onViewProfile }) {
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           position: 'relative',
         }}>
-          <span style={{ fontSize: 48 }}>{post.beforeImg}</span>
+          {post.beforeImg.startsWith('/') 
+  ? <img src={post.beforeImg} alt="before" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+  : <span style={{ fontSize: 48 }}>{post.beforeImg}</span>
+}
           <span style={{
             position: 'absolute', bottom: 8, left: 8,
             background: 'rgba(61,46,31,0.7)', color: '#fff', fontSize: 10,
@@ -76,7 +86,10 @@ function PostCard({ post, onUpvote, onViewProfile }) {
           aspectRatio: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           position: 'relative',
         }}>
-          <span style={{ fontSize: 48 }}>{post.afterImg}</span>
+          {post.afterImg.startsWith('/') 
+            ? <img src={post.afterImg} alt="after" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+           : <span style={{ fontSize: 48 }}>{post.afterImg}</span>
+}
           <span style={{
             position: 'absolute', bottom: 8, left: 8,
             background: 'rgba(107,142,90,0.85)', color: '#fff', fontSize: 10,
@@ -117,7 +130,7 @@ function PostCard({ post, onUpvote, onViewProfile }) {
             fontWeight: 600, fontSize: 13,
           }}
         >
-          💬 {localComments.length}
+          <MessageCircle size={14} /> {localComments.length}
         </button>
       </div>
 
@@ -126,7 +139,7 @@ function PostCard({ post, onUpvote, onViewProfile }) {
         <div style={{ borderTop: '1px solid #F0E8DA', padding: '12px 18px 14px', background: '#FDFBF7' }}>
           {localComments.map((c) => (
             <div key={c.id} style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
-              <Avatar username={c.username} size={26} />
+              <Avatar username={c.username} avatar={getUserAvatar(users, c.userId)} size={26} />
               <div>
                 <span style={{ fontWeight: 600, fontSize: 12, color: '#3D2E1F' }}>{c.username}</span>
                 <span style={{ fontSize: 11, color: '#A89780', marginLeft: 6 }}>{c.time}</span>

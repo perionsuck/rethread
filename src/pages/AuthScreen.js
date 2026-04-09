@@ -48,11 +48,8 @@ function AuthScreen() {
         position: 'relative', zIndex: 1, animation: 'fadeSlideUp 0.6s ease-out',
       }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{ fontSize: 48, marginBottom: 8 }}>♻️</div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, color: '#3D2E1F', margin: 0, letterSpacing: -1 }}>
-            ReThread
-          </h1>
-          <p style={{ color: '#8B6F47', fontSize: 14, marginTop: 4 }}>Sustainable Fashion Community</p>
+        <img src="/logo.png" alt="ReThread" style={{ height: 180, display: 'block', margin: 0, transform: 'translateX(-12px)' }} />
+          <p style={{ color: '#8B6F47', fontSize: 14, marginTop: -50 }}>Sustainable Fashion Community</p>
         </div>
 
         <div style={{ display: 'flex', background: '#F5EFE6', borderRadius: 12, padding: 3, marginBottom: 24 }}>

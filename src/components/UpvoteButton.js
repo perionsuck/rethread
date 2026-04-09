@@ -1,4 +1,5 @@
 import React from 'react';
+import { ArrowUp } from 'lucide-react';
 
 function UpvoteButton({ count, voted, onVote }) {
   return (
@@ -13,7 +14,7 @@ function UpvoteButton({ count, voted, onVote }) {
         fontWeight: 600, fontSize: 13, fontFamily: "'DM Sans', sans-serif",
       }}
     >
-      <span style={{ fontSize: 16, transition: 'transform 0.2s', transform: voted ? 'scale(1.2)' : 'scale(1)' }}>▲</span>
+      <ArrowUp size={14} style={{ transition: 'transform 0.2s', transform: voted ? 'scale(1.2)' : 'scale(1)' }} />
       {count}
     </button>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PostCard from '../components/PostCard';
 
-export default function FeedTab({ posts, onUpvote, onViewProfile }) {
+export default function FeedTab({ posts, users, onUpvote, onViewProfile }) {
   const [sortBy, setSortBy] = useState('hot');
 
   const sorted = [...posts].sort((a, b) => {
@@ -33,7 +33,7 @@ export default function FeedTab({ posts, onUpvote, onViewProfile }) {
 
       {/* Posts */}
       {sorted.map((post) => (
-        <PostCard key={post.id} post={post} onUpvote={onUpvote} onViewProfile={onViewProfile} />
+        <PostCard key={post.id} post={post} users={users} onUpvote={onUpvote} onViewProfile={onViewProfile} />
       ))}
     </div>
   );

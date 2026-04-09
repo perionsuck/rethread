@@ -34,8 +34,11 @@ function AppContent() {
     setActiveTab('profile_view');
   };
 
+  // Combine mock users with current user so lookups work everywhere
+  const allUsers = [...users, currentUser];
+
   const viewUser = viewingProfile
-    ? [...users, currentUser].find(u => u.id === viewingProfile)
+    ? allUsers.find(u => u.id === viewingProfile)
     : null;
 
   const tabs = [
@@ -55,13 +58,13 @@ function AppContent() {
         backdropFilter: 'blur(10px)', position: 'sticky', top: 0, zIndex: 20
       }}>
         <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 22, color: 'var(--color-text-primary)', margin: 0, letterSpacing: -0.5 }}>
-          ♻️ ReThread
+          <img src="/logo.png" alt="ReThread" style={{ height: 128, marginBottom: -20 }} />
         </h1>
       </div>
 
       {/* Page Content */}
       <div style={{ padding: '16px 16px 90px', minHeight: 'calc(100vh - 130px)' }}>
-        {activeTab === 'feed' && <FeedTab posts={posts} onUpvote={handleUpvote} onViewProfile={handleViewProfile} />}
+        {activeTab === 'feed' && <FeedTab posts={posts} users={allUsers} onUpvote={handleUpvote} onViewProfile={handleViewProfile} />}
         {activeTab === 'post' && (
           <CameraScreen
             onBack={() => setActiveTab('feed')}
@@ -71,8 +74,8 @@ function AppContent() {
             }}
           />
         )}
-        {activeTab === 'compete' && <CompetitionsTab competitions={MOCK_COMPETITIONS} posts={posts} onViewProfile={handleViewProfile} />}
-        {activeTab === 'leaderboard' && <LeaderboardTab users={users} onViewProfile={handleViewProfile} />}
+        {activeTab === 'compete' && <CompetitionsTab competitions={MOCK_COMPETITIONS} posts={posts} users={allUsers} onViewProfile={handleViewProfile} />}
+        {activeTab === 'leaderboard' && <LeaderboardTab users={allUsers} onViewProfile={handleViewProfile} />}
         {activeTab === 'profile' && <ProfileView user={currentUser} posts={posts} isOwn={true} />}
         {activeTab === 'profile_view' && viewUser && (
           <ProfileView user={viewUser} posts={posts} isOwn={viewUser.id === currentUser.id}

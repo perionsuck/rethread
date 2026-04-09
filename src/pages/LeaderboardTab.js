@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Avatar from '../components/Avatar';
+import { Medal, Crown } from 'lucide-react';
 
 export default function LeaderboardTab({ users, onViewProfile }) {
   const [sortBy, setSortBy] = useState('karma');
@@ -51,9 +52,9 @@ export default function LeaderboardTab({ users, onViewProfile }) {
         >
           {/* Rank */}
           <div style={{ width: 28, textAlign: 'center', fontFamily: 'var(--font-display)', fontSize: i < 3 ? 20 : 16, color: i === 0 ? 'var(--color-tan)' : 'var(--color-text-muted)' }}>
-            {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
+           {i === 0 ? <Crown size={20} color="#C4956A" /> : i === 1 ? <Medal size={20} color="#A89780" /> : i === 2 ? <Medal size={20} color="#B08D6A" /> : `${i + 1}`}
           </div>
-          <Avatar username={user.username} size={38} />
+          <Avatar username={user.username} avatar={user.avatar} size={38} />
           <div style={{ flex: 1 }}>
             <div style={{ fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 14, color: 'var(--color-text-dark)' }}>{user.displayName}</div>
             <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--color-text-muted)' }}>@{user.username}</div>
