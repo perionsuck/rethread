@@ -62,7 +62,7 @@ export default function CameraScreen({ onBack, onPost }) {
         borderBottom: '1px solid var(--color-border)', background: 'rgba(253,251,247,0.95)',
         backdropFilter: 'blur(10px)', position: 'sticky', top: 0, zIndex: 10
       }}>
-        <button onClick={onBack} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer', padding: 4 }}>←</button>
+        
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 18, color: 'var(--color-text-primary)', margin: 0 }}>
           {step === 'capture' ? 'Snap Your Garment' :
            step === 'analyzing' ? 'Analyzing...' :
