@@ -222,7 +222,7 @@ Each object must have these exact keys:
       }}>
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 18, color: 'var(--color-text-primary)', margin: 0 }}>
           {step === 'capture' ? 'Snap Your Garment' :
-            step === 'analyzing' ? 'Analyzing...' :
+            step === 'analyzing' ? '' :
               step === 'recommendations' ? 'Upcycle Ideas' :
                 step === 'steps' ? selectedRec?.title :
                   'Share Your Creation'}
