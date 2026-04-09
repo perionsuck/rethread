@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+<p align="center">
+  <img src="public/logo.png" alt="ReThread Logo" height="120" />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">ReThread</h1>
 
-## Available Scripts
+<p align="center">
+  A sustainable fashion community that promotes upcycling through AI-powered recommendations, community sharing, and competitions.
+</p>
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## About
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ReThread is a web application built for a fashion sustainability module. It encourages users to upcycle old clothing by providing AI-generated design recommendations and upcycled image previews, a community feed for sharing before & after transformations, themed competitions, and a leaderboard system.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+### AI Upcycle Recommendations
+Upload a photo of any clothing item and receive 3 creative upcycle suggestions powered by Grok AI. Each recommendation comes with detailed step-by-step DIY instructions and AI-generated image previews of the upcycled result.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Community Feed
+Browse a feed of user creations. Each post features before & after images, a description of the upcycling process, upvotes, and comments. Sort posts by Hot, New, or Top.
 
-### `npm run build`
+### Competitions
+Themed upcycling challenges with deadlines. Users submit entries, the community votes, and winners earn ranked points. View active and past competitions.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Leaderboard
+Community rankings sortable by post karma or competition ranked points. Tap any user to view their full profile and creation history.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### User Profiles
+Upload a profile photo, edit your display name and bio, and view your stats including karma, ranked points, and total posts.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech Stack
 
-### `npm run eject`
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React.js |
+| Icons | Lucide React |
+| Fonts | Playfair Display, DM Sans |
+| State Management | React Context API |
+| AI Recommendations | Grok API (xAI) |
+| AI Image Generation | Grok API (xAI) |
+| Backend (planned) | Supabase (Auth, Database, Storage) |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Project Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+rethread/
+├── public/
+│   ├── logo.png
+│   ├── avatars/            # User profile images
+│   └── posts/              # Post before/after images
+├── src/
+│   ├── App.js              # Main app with bottom navigation
+│   ├── index.js            # Entry point
+│   ├── context/
+│   │   └── AuthContext.js  # Authentication state management
+│   ├── data/
+│   │   └── mockData.js     # Mock users, posts, competitions
+│   ├── styles/
+│   │   └── global.css      # Global styles & CSS variables
+│   ├── components/
+│   │   ├── Avatar.js       # User avatar (supports image upload)
+│   │   ├── PostCard.js     # Post card with upvotes & comments
+│   │   └── UpvoteButton.js # Upvote button component
+│   └── pages/
+│       ├── AuthScreen.js       # Login / Sign Up
+│       ├── CameraScreen.js     # Photo capture & AI recommendations
+│       ├── FeedTab.js          # Home feed with sorting
+│       ├── CompetitionsTab.js  # Competitions list & detail view
+│       ├── LeaderboardTab.js   # User rankings
+│       └── ProfileView.js     # User profile & creations
+└── package.json
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Getting Started
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prerequisites
+- [Node.js](https://nodejs.org/) (LTS version)
 
-## Learn More
+### Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+git clone https://github.com/perionsuck/rethread.git
+cd rethread
+npm install
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open [http://localhost:3000](http://localhost:3000) to view in browser.
 
-### Code Splitting
+### Demo Login
+Enter any email and password (6+ characters) to sign in.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Screenshots
 
-### Analyzing the Bundle Size
+*Coming soon*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Roadmap
 
-### Making a Progressive Web App
+- [x] Community feed with upvotes and comments
+- [x] AI upcycle recommendations (Grok)
+- [x] AI-generated image previews (Grok)
+- [x] Competitions with themed challenges
+- [x] Leaderboard with karma and ranked points
+- [x] User profiles with avatar upload
+- [ ] Supabase authentication (email/password, OAuth)
+- [ ] Database for posts, comments, and upvotes
+- [ ] Image storage for user uploads
+- [ ] Competition submission and voting system
+- [ ] Dark mode
+- [ ] PWA support for mobile installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
